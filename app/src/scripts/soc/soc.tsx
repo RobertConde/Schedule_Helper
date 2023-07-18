@@ -235,9 +235,7 @@ export class SOC_API extends SOC_Generic {
             + `&category=${getProgramString(this.info.program)}`
             + `&last-control-number=${lcn}`
             + `&${getSearchByString(searchBy)}=${phrase}`;
-        const headers = new Headers();
-        headers.append("Origin", "null");
-        return fetch(`https://cors-anywhere.herokuapp.com/${searchURL}`, {signal: controller.signal, headers: headers})
+        return fetch(searchURL, {signal: controller.signal, headers: headers})
             .then(async r => await r.json())
             .then(async j => {
                 const {COURSES, LASTCONTROLNUMBER, RETRIEVEDROWS, TOTALROWS} = j[0];
